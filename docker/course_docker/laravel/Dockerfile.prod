@@ -27,5 +27,8 @@ COPY --from=builder /var/www/laravel .
 
 RUN chown -R www-data:www-data /var/www
 
+# Criando link simbólico, quando acessa a pasta /var/www/html mostra o conteúdo da /var/www/laravel/public
+RUN ln -s public html
+
 EXPOSE 9000
 CMD ["php-fpm"]

@@ -4,8 +4,9 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-# EXPOSE Funciona como uma documentação pra quem vai rodar a img, não tem efeito
+# EXPOSE Funciona como uma documentação pra quem vai rodar a img
 # Deve-se colocar -p do mesmo jeito ou usar network
+# Ele expõe a porta não para seu computador e sim para a rede que ele esta, pra outros containers
 EXPOSE 3000
 
 CMD ["node", "index.js"]
