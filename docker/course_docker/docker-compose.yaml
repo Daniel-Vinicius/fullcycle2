@@ -1,13 +1,19 @@
-version: '3'
+version: '3.9'
 
 services:
   laravel:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile.prod
     image: danielvinicius/laravel:prod
     container_name: laravel
     networks:
       - laranet
-  
+
   nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
     image: danielvinicius/nginx:prod
     container_name: nginx
     ports:
@@ -18,3 +24,4 @@ services:
 networks:
   laranet:
     driver: bridge
+    name: laranet
