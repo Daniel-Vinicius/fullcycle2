@@ -1,6 +1,6 @@
 [submodule "docker/course_docker/challenges/desafio-fc-1-go"]
 	path = docker/course_docker/challenges/desafio-fc-1-go
 	url = https://github.com/Daniel-Vinicius/desafio-fc-1-go
-[submodule "desafio-fc-2-nodejs"]
-	path = desafio-fc-2-nodejs
+[submodule "docker/course_docker/challenges/desafio-fc-2-nodejs"]
+	path = docker/course_docker/challenges/desafio-fc-2-nodejs
 	url = https://github.com/Daniel-Vinicius/desafio-fc-2-nodejs.git
