@@ -1,0 +1,3 @@
+[submodule "docker/course_docker/challenges/desafio-fc-1-go"]
+	path = docker/course_docker/challenges/desafio-fc-1-go
+	url = https://github.com/Daniel-Vinicius/desafio-fc-1-go
