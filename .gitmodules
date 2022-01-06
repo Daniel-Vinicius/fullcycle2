@@ -4,3 +4,6 @@
 [submodule "docker/course_docker/challenges/desafio-fc-2-nodejs"]
 	path = docker/course_docker/challenges/desafio-fc-2-nodejs
 	url = https://github.com/Daniel-Vinicius/desafio-fc-2-nodejs.git
+[submodule "comunication/fc2-grpc"]
+	path = comunication/fc2-grpc
+	url = https://github.com/Daniel-Vinicius/fc2-grpc.git
