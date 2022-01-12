@@ -7,3 +7,6 @@
 [submodule "comunication/fc2-grpc"]
 	path = comunication/fc2-grpc
 	url = https://github.com/Daniel-Vinicius/fc2-grpc.git
+[submodule "comunication/fc2-graphql"]
+	path = comunication/fc2-graphql
+	url = https://github.com/Daniel-Vinicius/fc2-graphql.git
