@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    rabbitmq:
+        container_name: fullcycle-rabbitmq
+        image: 'rabbitmq:3-management'
+        environment:
+            RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLMNEQG"
+            RABBITMQ_DEFAULT_USER: "rabbitmq"
+            RABBITMQ_DEFAULT_PASS: "rabbitmq"
+            RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        volumes:
+            - ./rabbitmqdata:/var/lib/rabbitmq/mnesia
+        networks:
+            - fullcycle
+
+networks:
+    fullcycle:
+        driver: bridge
