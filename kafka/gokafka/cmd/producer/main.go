@@ -12,13 +12,8 @@ func main() {
 	producer := NewKafkaProducer()
 	Publish("Hello Go with Kafka", "teste", producer, nil, deliveryChan)
 
-	event := <-deliveryChan
-	msg := event.(*kafka.Message)
-	if msg.TopicPartition.Error != nil {
-		fmt.Println("Erro ao enviar", msg.TopicPartition.Error.Error())
-	} else {
-		fmt.Println("Mensagem enviada:", msg.TopicPartition)
-	}
+	// go Async, other thread
+	go DeliveryReport(deliveryChan)
 
 	// Para o programa Go não morrer antes de dar tempo de mandar a mensagem
 	producer.Flush(1000)
@@ -51,4 +46,19 @@ func Publish(msg string, topic string, producer *kafka.Producer, key []byte, del
 	}
 
 	return nil
+}
+
+func DeliveryReport(deliveryChan chan kafka.Event) {
+	for event := range deliveryChan {
+		switch event := event.(type) {
+		case *kafka.Message:
+			if event.TopicPartition.Error != nil {
+				fmt.Println("Erro ao enviar", event.TopicPartition.Error.Error())
+			} else {
+				fmt.Println("Mensagem enviada:", event.TopicPartition)
+				// anotar no banco de dados que a mensagem foi processada.
+				// ex: confirmar que uma transferência bancaria ocorreu.
+			}
+		}
+	}
 }
