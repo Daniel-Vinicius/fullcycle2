@@ -10,7 +10,7 @@ import (
 func main() {
 	deliveryChan := make(chan kafka.Event)
 	producer := NewKafkaProducer()
-	Publish("Hello Go with Kafka", "teste", producer, nil, deliveryChan)
+	Publish("Kafka with idempotence", "teste", producer, nil, deliveryChan)
 
 	// go Async, other thread
 	go DeliveryReport(deliveryChan)
@@ -21,7 +21,10 @@ func main() {
 
 func NewKafkaProducer() *kafka.Producer {
 	configMap := &kafka.ConfigMap{
-		"bootstrap.servers": "gokafka_kafka_1:9092",
+		"bootstrap.servers":   "gokafka_kafka_1:9092",
+		"delivery.timeout.ms": "0", // infinite
+		"acks":                "all",
+		"enable.idempotence":  "true",
 	}
 
 	producer, err := kafka.NewProducer(configMap)
