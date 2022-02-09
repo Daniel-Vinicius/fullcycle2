@@ -10,7 +10,8 @@ import (
 func main() {
 	deliveryChan := make(chan kafka.Event)
 	producer := NewKafkaProducer()
-	Publish("Kafka with idempotence", "teste", producer, nil, deliveryChan)
+	Publish("Deposito", "teste", producer, []byte("transferencia"), deliveryChan)
+	Publish("Saque", "teste", producer, []byte("transferencia"), deliveryChan)
 
 	// go Async, other thread
 	go DeliveryReport(deliveryChan)
