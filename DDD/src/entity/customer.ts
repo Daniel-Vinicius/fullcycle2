@@ -13,16 +13,16 @@ export class Customer {
 	}
 
 	validate() {
+		if (!this._id) {
+			throw new Error("Id is required");
+		}
+
 		if (!this._name) {
 			throw new Error("Name is required");
 		}
 
 		if (this._name.split(" ").length < 2) {
 			throw new Error("Name must contain at least two words");
-		}
-
-		if (!this._id) {
-			throw new Error("Id is required");
 		}
 	}
 
