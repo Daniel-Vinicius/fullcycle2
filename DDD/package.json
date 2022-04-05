@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/test.ts"
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/main.ts"
   },
   "author": "github.com/Daniel-Vinicius",
   "license": "MIT",

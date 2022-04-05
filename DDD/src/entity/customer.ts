@@ -1,6 +1,6 @@
 import { Address } from "./address";
 
-class Customer {
+export class Customer {
 	private _id: string;
 	private _name: string;
 	private _address?: Address;
@@ -51,16 +51,16 @@ class Customer {
 	getAddress(): Address | null {
 		return this._address ?? null;
 	}
+
+	get id() {
+		return this._id;
+	}
+
+	get name() {
+		return this._name;
+	}
+
+	get active() {
+		return this._active;
+	}
 }
-
-// const john = new Customer("1", "John Doe");
-// const robert = new Customer("2", "Robert Doe");
-
-// const address = new Address("Wilkie Way", 4290, 94306, "Palo Alto, CA");
-
-// john.setAddress(address);
-
-// john.activate();
-
-// console.log(john.getAddress()?.toString());
-// console.log(robert.getAddress()?.toString());
