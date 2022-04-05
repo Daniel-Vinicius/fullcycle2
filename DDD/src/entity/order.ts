@@ -22,4 +22,8 @@ export class Order {
 	get items() {
 		return this._items;
 	}
+
+	total(): number {
+		return this._items.reduce((acc, item) => acc + item.price, 0);
+	}
 }

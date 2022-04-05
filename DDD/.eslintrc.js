@@ -32,6 +32,7 @@ module.exports = {
 			"error",
 			"always"
 		],
-		"@typescript-eslint/adjacent-overload-signatures": ["off"]
+		"@typescript-eslint/adjacent-overload-signatures": ["off"],
+		"no-useless-escape": ["off"],
 	}
 };
