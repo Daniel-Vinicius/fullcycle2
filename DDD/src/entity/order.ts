@@ -9,6 +9,22 @@ export class Order {
 		this._id = id;
 		this._customerId = customerId;
 		this._items = items;
+
+		this.validate();
+	}
+
+	validate() {
+		if (!this._id) {
+			throw new Error("Id is required");
+		}
+
+		if (!this._customerId) {
+			throw new Error("CustomerId is required");
+		}
+
+		if (this._items.length <= 0) {
+			throw new Error("Order must have at least one item");
+		}
 	}
 
 	get id() {
