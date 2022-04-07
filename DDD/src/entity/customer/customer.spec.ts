@@ -1,45 +1,25 @@
-import { Customer } from "./customer";
+import { Customer } from ".";
 import { Address } from "./address";
 
 describe("Customer unit tests", () => {
-	function emptyIdValidation() {
-		expect(() => {
-			new Customer("123", "");
-		}).toThrowError("Name is required");
-	}
-
-	function emptyNameValidation() {
-		expect(() => {
-			new Customer("123", "");
-		}).toThrowError("Name is required");
-	}
-
-	function atLeastTwoWordsNameValidation() {
-		expect(() => {
-			new Customer("123", "John");
-		}).toThrowError("Name must contain at least two words");
-	}
-
-	function setAddressToCustomer(customer: Customer) {
-		const address = new Address("Wilkie Way", 4290, 94306, "Palo Alto, CA");
-		customer.setAddress(address);
-	}
-
-	function activateCustomer(customer: Customer) {
-		setAddressToCustomer(customer);
-		customer.activate();
-	}
+	const address = new Address("Wilkie Way", 4290, 94306, "Palo Alto, CA");
 
 	it("should throw error when id is empty", () => {
-		emptyIdValidation();
+		expect(() => {
+			new Customer("", "John Doe");
+		}).toThrowError("Id is required");
 	});
 
 	it("should throw error when name is empty", () => {
-		emptyNameValidation();
+		expect(() => {
+			new Customer("123", "");
+		}).toThrowError("Name is required");
 	});
 
 	it("should throw error when name don't have at least two words", () => {
-		atLeastTwoWordsNameValidation();
+		expect(() => {
+			new Customer("123", "John");
+		}).toThrowError("Name must contain at least two words");
 	});
 
 	it("should change name", () => {
@@ -66,25 +46,19 @@ describe("Customer unit tests", () => {
 
 	it("should set address to a customer", () => {
 		const customer = new Customer("123", "John Doe");
-		setAddressToCustomer(customer);
+		customer.setAddress(address);
 
-		expect(customer.getAddress()).toBeTruthy();
+		expect(customer.getAddress()).toBe(address);
 	});
 
-	it("should activate a customer", () => {
+	it("should activate and deactivate a customer", () => {
 		const customer = new Customer("123", "John Doe");
+		customer.setAddress(address);
 
-		activateCustomer(customer);
-
+		customer.activate();
 		expect(customer.active).toBe(true);
-	});
-
-	it("should deactivate a customer", () => {
-		const customer = new Customer("123", "John Doe");
-		activateCustomer(customer);
 
 		customer.deactivate();
 		expect(customer.active).toBe(false);
 	});
-
 });

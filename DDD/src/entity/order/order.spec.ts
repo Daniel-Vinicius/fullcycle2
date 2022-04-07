@@ -1,4 +1,4 @@
-import { Order } from "./order";
+import { Order } from ".";
 import { OrderItem } from "./orderItem";
 
 describe("Order unit tests", () => {
@@ -23,8 +23,8 @@ describe("Order unit tests", () => {
 
 	it("should calculate total", () => {
 		const items = [
-			new OrderItem("1", "Shirt", 99.99, "product-1", 2),
-			new OrderItem("2", "Shoes", 199.99, "product-2", 1)
+			new OrderItem("1", "product-1", "Shirt", 99.99, 2),
+			new OrderItem("2", "product-2", "Shoes", 199.99, 1)
 		];
 
 		const order = new Order("1", "123", items);
@@ -35,8 +35,8 @@ describe("Order unit tests", () => {
 	it("should throw error if the item quantity is less than or equal to 0", () => {
 		expect(() => {
 			const items = [
-				new OrderItem("1", "Shirt", 99.99, "product-1", -1),
-				new OrderItem("2", "Shoes", 199.99, "product-2", 0)
+				new OrderItem("1", "product-1", "Shirt", 99.99,  -1),
+				new OrderItem("2", "product-2", "Shoes", 199.99,  0)
 			];
 
 			new Order("1", "123", items);

@@ -2,14 +2,14 @@ export class OrderItem {
 	private _id: string;
 	private _productId: string;
 	private _name: string;
-	private _price: number;
+	private _unitPrice: number;
 	private _quantity: number;
 
-	constructor(id: string, name: string, price: number, productId: string, quantity: number) {
+	constructor(id: string, productId: string, name: string, unitPrice: number,  quantity: number) {
 		this._id = id;
-		this._name = name;
-		this._price = price;
 		this._productId = productId;
+		this._name = name;
+		this._unitPrice = unitPrice;
 		this._quantity = quantity;
 
 		this.validate();
@@ -20,16 +20,16 @@ export class OrderItem {
 			throw new Error("Id is required");
 		}
 
+		if (!this._productId) {
+			throw new Error("ProductId is required");
+		}
+
 		if (!this._name) {
 			throw new Error("Name is required");
 		}
 
-		if (this._price <= 0) {
+		if (this._unitPrice <= 0) {
 			throw new Error("Price must be greater than zero");
-		}
-
-		if (!this._productId) {
-			throw new Error("ProductId is required");
 		}
 
 		if (this._quantity <= 0) {
@@ -46,7 +46,7 @@ export class OrderItem {
 	}
 
 	getPriceOfOrderItem() {
-		return this._price * this._quantity;
+		return this._unitPrice * this._quantity;
 	}
 
 	get quantity() {
