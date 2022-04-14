@@ -23,8 +23,8 @@ describe("Order unit tests", () => {
 
 	it("should calculate total", () => {
 		const items = [
-			new OrderItem("1", "product-1", "Shirt", 99.99, 2),
-			new OrderItem("2", "product-2", "Shoes", 199.99, 1)
+			new OrderItem("1", "product-21", "Order Item one", 99.99, 2),
+			new OrderItem("2", "product-62", "Order Item two", 199.99, 1)
 		];
 
 		const order = new Order("1", "123", items);
