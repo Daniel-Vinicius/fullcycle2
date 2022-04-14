@@ -31,15 +31,4 @@ describe("Order unit tests", () => {
 
 		expect(order.total()).toBe(399.97);
 	});
-
-	it("should throw error if the item quantity is less than or equal to 0", () => {
-		expect(() => {
-			const items = [
-				new OrderItem("1", "product-1", "Shirt", 99.99,  -1),
-				new OrderItem("2", "product-2", "Shoes", 199.99,  0)
-			];
-
-			new Order("1", "123", items);
-		}).toThrowError("Quantity must be greater than zero");
-	});
 });
