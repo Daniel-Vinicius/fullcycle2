@@ -5,6 +5,7 @@ export class Customer {
 	private _name: string;
 	private _address?: Address;
 	private _active = false;
+	private _rewardPoints = 0;
 
 	constructor(id: string, name: string) {
 		this._id = id;
@@ -23,6 +24,10 @@ export class Customer {
 
 		if (this._name.split(" ").length < 2) {
 			throw new Error("Name must contain at least two words");
+		}
+
+		if (this._rewardPoints < 0) {
+			throw new Error("Reward points must be greater than or equal to zero");
 		}
 	}
 
@@ -52,6 +57,14 @@ export class Customer {
 		return this._address ?? null;
 	}
 
+	addRewardPoints(points: number) {
+		if (points < 0) {
+			throw new Error("Points must be positive");
+		}
+
+		this._rewardPoints += points;
+	}
+
 	get id() {
 		return this._id;
 	}
@@ -62,5 +75,9 @@ export class Customer {
 
 	get active() {
 		return this._active;
+	}
+
+	get rewardPoints() {
+		return this._rewardPoints;
 	}
 }
