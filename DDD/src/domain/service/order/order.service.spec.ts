@@ -1,6 +1,6 @@
-import { Order } from "../../entity/order";
-import { OrderItem } from "../../entity/order/orderItem";
-import { Customer } from "../../entity/customer";
+import { Order } from "@domain/entity/order";
+import { OrderItem } from "@domain/entity/order/orderItem";
+import { Customer } from "@domain/entity/customer";
 
 import { OrderService } from "./order.service";
 
