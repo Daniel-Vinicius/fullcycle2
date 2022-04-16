@@ -30,7 +30,7 @@ describe("Product repository test", () => {
 
 		const productModel = await ProductModel.findOne({ where: { id: "1" } });
 
-		expect(productModel.toJSON()).toStrictEqual({
+		expect(productModel?.toJSON()).toStrictEqual({
 			id: "1",
 			name: "Product 1",
 			price: 100,
@@ -47,7 +47,7 @@ describe("Product repository test", () => {
 		await productRepository.update(product);
 
 		const productModelUpdated = await ProductModel.findOne({ where: { id: "1" } });
-		expect(productModelUpdated.toJSON()).toStrictEqual({
+		expect(productModelUpdated?.toJSON()).toStrictEqual({
 			id: "1",
 			name: "Product 2",
 			price: 200,
@@ -62,6 +62,14 @@ describe("Product repository test", () => {
 		const productFound = await productRepository.find("1");
 
 		expect(productFound).toStrictEqual(product);
+	});
+
+	it("should throw an error when product is not found", async () => {
+		const productRepository = new ProductRepository();
+
+		expect(async () => {
+			await productRepository.find("456402");
+		}).rejects.toThrow("Product not found");
 	});
 
 	it("should find all products", async () => {

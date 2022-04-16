@@ -2,6 +2,11 @@ import { ProductRepositoryInterface } from "@domain/repository/productRepository
 import { Product } from "@domain/entity/product";
 import { ProductModel } from "@infra/database/sequelize/model/product.model";
 
+function productModelToProduct(productModel: ProductModel): Product {
+	const product = new Product(productModel.id, productModel.name, productModel.price);
+	return product;
+}
+
 export class ProductRepository implements ProductRepositoryInterface {
 	async create(entity: Product): Promise<void> {
 		await ProductModel.create({
@@ -22,15 +27,26 @@ export class ProductRepository implements ProductRepositoryInterface {
 	}
 
 	async find(id: string): Promise<Product> {
-		const productModel = await ProductModel.findOne({ where: { id } });
-		return new Product(productModel.id, productModel.name, productModel.price);
+		let productModel;
+		try {
+			productModel = await ProductModel.findOne({
+				where: {
+					id,
+				},
+				rejectOnEmpty: true,
+			});
+		} catch (error) {
+			throw new Error("Product not found");
+		}
+
+		const product = productModelToProduct(productModel);
+
+		return product;
 	}
 
 	async findAll(): Promise<Product[]> {
 		const productsModel = await ProductModel.findAll();
-		const products = productsModel.map((productModel) => {
-			return new Product(productModel.id, productModel.name, productModel.price);
-		});
+		const products = productsModel.map((productModel) => productModelToProduct(productModel));
 
 		return products;
 	}

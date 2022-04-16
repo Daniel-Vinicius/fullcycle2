@@ -2,7 +2,7 @@ import { Customer } from ".";
 import { Address } from "./address";
 
 describe("Customer unit tests", () => {
-	const address = new Address("Wilkie Way", 4290, 94306, "Palo Alto, CA");
+	const address = new Address("Wilkie Way", 4290, "94306", "Palo Alto, CA");
 
 	it("should throw error when id is empty", () => {
 		expect(() => {
