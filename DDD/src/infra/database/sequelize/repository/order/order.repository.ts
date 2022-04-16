@@ -3,7 +3,7 @@ import { OrderItem } from "@domain/entity/order/orderItem";
 
 import { OrderRepositoryInterface } from "@domain/repository/orderRepositoryInterface";
 import { OrderModel } from "@infra/database/sequelize/model/order.model";
-import { OrderItemModel } from "../model/orderItem.model";
+import { OrderItemModel } from "@infra/database/sequelize/model/orderItem.model";
 
 function orderItemToDatabase(orderItem: OrderItem) {
 	return {

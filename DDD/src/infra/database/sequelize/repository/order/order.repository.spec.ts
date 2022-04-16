@@ -11,8 +11,8 @@ import { Product } from "@domain/entity/product";
 import { OrderItem } from "@domain/entity/order/orderItem";
 import { Order } from "@domain/entity/order";
 
-import { CustomerRepository } from "./customer.repository";
-import { ProductRepository } from "./product.repository";
+import { CustomerRepository } from "@infra/database/sequelize/repository/customer/customer.repository";
+import { ProductRepository } from "@infra/database/sequelize/repository/product/product.repository";
 import { OrderRepository } from "./order.repository";
 
 describe("Order repository test", () => {
