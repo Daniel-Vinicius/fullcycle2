@@ -40,6 +40,24 @@ export class Order {
 	}
 
 	total(): number {
-		return this._items.reduce((acc, item) => acc += item.getPriceOfOrderItem(), 0);
+		const total = this._items.reduce((acc, item) => acc += item.getPriceOfOrderItem(), 0);
+		const totalWithTwoDecimals = total.toFixed(2);
+		return Number(totalWithTwoDecimals);
+	}
+
+	addItem(item: OrderItem) {
+		item.validate();
+		this._items.push(item);
+	}
+
+	removeItem(itemId: string) {
+		const itemIndex = this._items.findIndex(item => item.id === itemId);
+		const itemExists = itemIndex !== -1 && itemIndex >= 0;
+
+		if (!itemExists) {
+			throw new Error("Item not found");
+		}
+
+		this._items.splice(itemIndex, 1);
 	}
 }
