@@ -41,6 +41,10 @@ export class OrderItem {
 		return this._id;
 	}
 
+	get productId() {
+		return this._productId;
+	}
+
 	get name() {
 		return this._name;
 	}
@@ -51,5 +55,9 @@ export class OrderItem {
 
 	get quantity() {
 		return this._quantity;
+	}
+
+	get unitPrice() {
+		return this._unitPrice;
 	}
 }

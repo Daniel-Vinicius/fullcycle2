@@ -22,7 +22,7 @@ export class OrderModel extends Model {
 
   @ForeignKey(() => CustomerModel)
   @Column({ allowNull: false })
-  declare costumerId: string;
+  declare customerId: string;
 
   @BelongsTo(() => CustomerModel)
   declare customer: CustomerModel;
