@@ -144,6 +144,15 @@ describe("Order repository test", () => {
 		expect(orderFromDB2?.total).toBe(order.total());
 	});
 
+	it("should throw an error when customer is not found", async () => {
+		const orderRepository = new OrderRepository();
+
+		expect(async () => {
+			await orderRepository.find("973");
+		}).rejects.toThrow("Order with id: 973 not found");
+	});
+
+
 	it("should find a order", async () => {
 		const customerRepository = new CustomerRepository();
 		const productRepository = new ProductRepository();

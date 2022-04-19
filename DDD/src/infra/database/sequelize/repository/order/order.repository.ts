@@ -60,13 +60,16 @@ export class OrderRepository implements OrderRepositoryInterface {
 	}
 
 	async find(id: string): Promise<Order> {
-		const orderOnDB = await OrderModel.findOne({
-			where: { id },
-			include: [{ model: OrderItemModel }]
-		});
+		let orderOnDB;
 
-		if (!orderOnDB) {
-			throw new Error(`Order with id: "${id}" not found`);
+		try {
+			orderOnDB = await OrderModel.findOne({
+				where: { id },
+				include: [{ model: OrderItemModel }],
+				rejectOnEmpty: true,
+			});
+		} catch (error) {
+			throw new Error(`Order with id: ${id} not found`);
 		}
 
 		const items = orderOnDB.items.map(orderItemModelToOrderItem);
