@@ -14,4 +14,30 @@ describe("Domain events tests", () => {
 		expect(eventHandlersProductCreatedEvent.length).toBe(1);
 		expect(eventHandlersProductCreatedEvent).toContainEqual(eventHandler);
 	});
+
+	it("should unregister an event handler", () => {
+		const eventDispatcher = new EventDispatcher();
+		const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+
+		eventDispatcher.register("ProductCreatedEvent", eventHandler);
+		expect(eventDispatcher.eventHandlers["ProductCreatedEvent"].length).toBe(1);
+
+		eventDispatcher.unregister("ProductCreatedEvent", eventHandler);
+		expect(eventDispatcher.eventHandlers["ProductCreatedEvent"].length).toBe(0);
+		expect(eventDispatcher.eventHandlers["ProductCreatedEvent"]).not.toContainEqual(eventHandler);
+	});
+
+	it("should unregister all event handlers", () => {
+		const eventDispatcher = new EventDispatcher();
+
+		eventDispatcher.register("ProductCreatedEvent", new SendEmailWhenProductIsCreatedHandler());
+		eventDispatcher.register("ProductCreatedEvent", new SendEmailWhenProductIsCreatedHandler());
+		eventDispatcher.register("ProductCreatedEvent", new SendEmailWhenProductIsCreatedHandler());
+
+		expect(eventDispatcher.eventHandlers["ProductCreatedEvent"].length).toBe(3);
+
+		eventDispatcher.unregisterAll();
+		expect(eventDispatcher.eventHandlers["ProductCreatedEvent"]).toBeFalsy();
+	});
+
 });

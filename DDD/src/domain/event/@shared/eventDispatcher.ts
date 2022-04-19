@@ -27,10 +27,13 @@ export class EventDispatcher implements EventDispatcherInterface {
 	}
 
 	unregister(eventName: string, eventHandler: EventHandlerInterface): void {
-		throw new Error("Method not implemented.");
+		const eventHandlersFiltered = this.eventHandlers[eventName]
+			.filter(EventH => EventH !== eventHandler);
+
+		this.eventHandlers[eventName] = eventHandlersFiltered;
 	}
 
 	unregisterAll(): void {
-		throw new Error("Method not implemented.");
+		this._eventHandlers = {};
 	}
 }
