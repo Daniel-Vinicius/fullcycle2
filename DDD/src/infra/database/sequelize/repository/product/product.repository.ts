@@ -1,5 +1,5 @@
-import { ProductRepositoryInterface } from "@domain/repository/productRepositoryInterface";
-import { Product } from "@domain/entity/product";
+import { ProductRepositoryInterface } from "@domain/product/repository/productRepositoryInterface";
+import { Product } from "@domain/product/entity/product";
 import { ProductModel } from "@infra/database/sequelize/model/product.model";
 
 function productModelToProduct(productModel: ProductModel): Product {

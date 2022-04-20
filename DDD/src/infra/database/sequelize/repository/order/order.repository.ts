@@ -1,7 +1,7 @@
-import { Order } from "@domain/entity/order";
-import { OrderItem } from "@domain/entity/order/orderItem";
+import { Order } from "@domain/order/entity/order";
+import { OrderItem } from "@domain/order/entity/orderItem";
 
-import { OrderRepositoryInterface } from "@domain/repository/orderRepositoryInterface";
+import { OrderRepositoryInterface } from "@domain/order/repository/orderRepositoryInterface";
 import { OrderModel } from "@infra/database/sequelize/model/order.model";
 import { OrderItemModel } from "@infra/database/sequelize/model/orderItem.model";
 

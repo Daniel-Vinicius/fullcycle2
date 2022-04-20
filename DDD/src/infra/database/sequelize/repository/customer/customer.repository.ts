@@ -1,6 +1,6 @@
-import { Customer } from "@domain/entity/customer";
-import { Address } from "@domain/entity/customer/address";
-import { CustomerRepositoryInterface } from "@domain/repository/customerRepositoryInterface";
+import { Customer } from "@domain/customer/entity/customer";
+import { Address } from "@domain/customer/valueObject/address";
+import { CustomerRepositoryInterface } from "@domain/customer/repository/customerRepositoryInterface";
 import { CustomerModel } from "@infra/database/sequelize/model/customer.model";
 
 function customerModelHasAddress(customerModel: CustomerModel): boolean {
