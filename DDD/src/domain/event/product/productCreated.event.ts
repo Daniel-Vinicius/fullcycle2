@@ -1,16 +1,19 @@
 import { EventInterface } from "@domain/event/@shared/event.interface";
 
-interface ProductCreatedEventData {
-  productId: string;
-  productName: string;
+interface ProductCreatedEventPayload {
+	product: {
+		id: string;
+		name: string;
+		price: number;
+	}
 }
 
 export class ProductCreatedEvent implements EventInterface {
 	dateTimeOccurred: Date;
-	eventData: ProductCreatedEventData;
+	payload: ProductCreatedEventPayload;
 
-	constructor(eventData: ProductCreatedEventData) {
+	constructor(eventPayload: ProductCreatedEventPayload) {
 		this.dateTimeOccurred = new Date();
-		this.eventData = eventData;
+		this.payload = eventPayload;
 	}
 }

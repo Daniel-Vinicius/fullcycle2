@@ -15,22 +15,29 @@ export class EventDispatcher implements EventDispatcherInterface {
 	}
 
 	notify(event: EventInterface): void {
-		throw new Error("Method not implemented.");
+		const eventName = event.constructor.name;
+		const eventHandlersEvent = this._eventHandlers[eventName];
+
+		if (eventHandlersEvent) {
+			eventHandlersEvent.forEach(eventHandler => {
+				eventHandler.handle(event);
+			});
+		}
 	}
 
 	register(eventName: string, eventHandler: EventHandlerInterface): void {
-		if (!this.eventHandlers[eventName]) {
-			this.eventHandlers[eventName] = [];
+		if (!this._eventHandlers[eventName]) {
+			this._eventHandlers[eventName] = [];
 		}
 
 		this._eventHandlers[eventName].push(eventHandler);
 	}
 
 	unregister(eventName: string, eventHandler: EventHandlerInterface): void {
-		const eventHandlersFiltered = this.eventHandlers[eventName]
+		const eventHandlersFiltered = this._eventHandlers[eventName]
 			.filter(EventH => EventH !== eventHandler);
 
-		this.eventHandlers[eventName] = eventHandlersFiltered;
+		this._eventHandlers[eventName] = eventHandlersFiltered;
 	}
 
 	unregisterAll(): void {
