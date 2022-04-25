@@ -3,10 +3,10 @@ import crypto from "crypto";
 import { Customer } from "../entity/customer";
 import { Address } from "../valueObject/address";
 
-interface CreateCustomerInterface {
+interface CreateCustomerWithAddressInterface {
 	name: string;
 
-	address?: {
+	address: {
 		street: string;
 		number: number;
 		zip: string;
@@ -15,20 +15,20 @@ interface CreateCustomerInterface {
 }
 
 export class CustomerFactory {
-	public static create(data: CreateCustomerInterface): Customer {
+	public static create(name: string): Customer {
+		const uuid = crypto.randomUUID();
+		return new Customer(uuid, name);
+	}
+
+	public static createWithAddress(data: CreateCustomerWithAddressInterface): Customer {
 		const uuid = crypto.randomUUID();
 		const { name, address } = data;
+		const { street, number, zip, city } = address;
 
-		if (address) {
-			const { street, number, zip, city } = address;
+		const addressOfCustomer = new Address(street, number, zip, city);
+		const customer = new Customer(uuid, name);
+		customer.setAddress(addressOfCustomer);
 
-			const addressOfCustomer = new Address(street, number, zip, city);
-			const customer = new Customer(uuid, name);
-			customer.setAddress(addressOfCustomer);
-
-			return customer;
-		}
-
-		return new Customer(uuid, name);
+		return customer;
 	}
 }
