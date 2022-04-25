@@ -1,7 +1,7 @@
 import { Customer } from "@domain/customer/entity/customer";
 import { Address } from "@domain/customer/valueObject/address";
 import { CustomerRepositoryInterface } from "@domain/customer/repository/customerRepositoryInterface";
-import { CustomerModel } from "@infra/database/sequelize/model/customer.model";
+import { CustomerModel } from "@infra/customer/model/sequelize/customer.model";
 
 function customerModelHasAddress(customerModel: CustomerModel): boolean {
 	if (customerModel.street && customerModel.number && customerModel.zipcode && customerModel.city) {

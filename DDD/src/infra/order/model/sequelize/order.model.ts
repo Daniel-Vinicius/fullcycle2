@@ -8,7 +8,7 @@ import {
 	HasMany
 } from "sequelize-typescript";
 
-import { CustomerModel } from "./customer.model";
+import { CustomerModel } from "@infra/customer/model/sequelize/customer.model";
 import { OrderItemModel } from "./orderItem.model";
 
 @Table({
