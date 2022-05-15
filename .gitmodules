@@ -10,3 +10,6 @@
 [submodule "comunication/fc2-graphql"]
 	path = comunication/fc2-graphql
 	url = https://github.com/Daniel-Vinicius/fc2-graphql.git
+[submodule "go-ports-adapters"]
+	path = go-ports-adapters
+	url = https://github.com/Daniel-Vinicius/go-ports-adapters.git
