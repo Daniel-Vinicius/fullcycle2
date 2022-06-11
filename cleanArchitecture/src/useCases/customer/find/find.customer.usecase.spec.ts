@@ -5,6 +5,7 @@ import { CustomerRepository } from "@infra/customer/repository/sequelize/custome
 
 import { CustomerFactory } from "@domain/customer/factory/customer.factory";
 import { InputFindCustomerDto, OutputFindCustomerDto } from "./find.customer.dto";
+import { FindCustomerUseCase } from "./find.customer.usecase";
 
 describe("Test find customer use case", () => {
 	let sequelize: Sequelize;
@@ -48,10 +49,10 @@ describe("Test find customer use case", () => {
 		const expectedOutput: OutputFindCustomerDto = {
 			id: customer.id,
 			name: customer.name,
-			address: customer.getAddress()!.toJSON()
+			address: customer.getAddress()?.toJSON()
 		};
 
-		const result = useCase.execute(input);
+		const result = await useCase.execute(input);
 		expect(result).toEqual(expectedOutput);
 	});
 
