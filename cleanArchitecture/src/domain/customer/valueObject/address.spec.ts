@@ -24,4 +24,16 @@ describe("Address unit tests", () => {
 
 		expect(address.toString()).toBe("Wilkie Way, 4290, 94306 Palo Alto, CA");
 	});
+
+	it("should return a JSON object in the expected format", () => {
+		const address = new Address("Wilkie Way", 4290, "94306", "Palo Alto, CA");
+
+		expect(address.toJSON()).toEqual({
+			street: "Wilkie Way",
+			number: 4290,
+			zip: "94306",
+			city: "Palo Alto, CA",
+		});
+	});
+
 });
