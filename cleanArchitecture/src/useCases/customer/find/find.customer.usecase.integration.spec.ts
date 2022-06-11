@@ -7,7 +7,7 @@ import { CustomerFactory } from "@domain/customer/factory/customer.factory";
 import { InputFindCustomerDto, OutputFindCustomerDto } from "./find.customer.dto";
 import { FindCustomerUseCase } from "./find.customer.usecase";
 
-describe("Test find customer use case", () => {
+describe("Integration Test find customer use case", () => {
 	let sequelize: Sequelize;
 
 	beforeEach(async () => {
