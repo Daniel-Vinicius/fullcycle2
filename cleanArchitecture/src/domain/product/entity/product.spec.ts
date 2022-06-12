@@ -42,4 +42,15 @@ describe("Product unit tests", () => {
 
 		expect(product.price).toBe(90);
 	});
+
+	it("it should return a product in json", () => {
+		const product = new Product("1", "Product 1", 100);
+
+		expect(product.toJSON()).toEqual({
+			id: "1",
+			name: "Product 1",
+			price: 100,
+		});
+	});
+
 });

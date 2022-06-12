@@ -1,6 +1,4 @@
-import { ProductInterface } from "./product.interface";
-
-export class Product implements ProductInterface {
+export class Product {
 	private _id: string;
 	private _name: string;
 	private _price: number;
@@ -52,5 +50,13 @@ export class Product implements ProductInterface {
 		const discount = this._price * discountPercentage / 100;
 		this._price = this._price - discount;
 		this.validate();
+	}
+
+	toJSON() {
+		return {
+			id: this._id,
+			name: this._name,
+			price: this._price,
+		};
 	}
 }
