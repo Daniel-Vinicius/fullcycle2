@@ -19,8 +19,16 @@ export class Address {
 			throw new Error("Street is required");
 		}
 
+		if (!this._number) {
+			throw new Error("Number is required");
+		}
+
 		if (this._number <= 0) {
 			throw new Error("Number must be greater than 0");
+		}
+		
+		if (!this._zip) {
+			throw new Error("Zip is required");
 		}
 
 		if (!this._city) {

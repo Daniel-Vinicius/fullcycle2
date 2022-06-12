@@ -13,6 +13,12 @@ describe("Address unit tests", () => {
 		}).toThrowError("Number must be greater than 0");
 	});
 
+	it("should throw error when zip is empty", () => {
+		expect(() => {
+			new Address("Wilkie Way", 4290, "", "Palo Alto, CA");
+		}).toThrowError("Zip is required");
+	});
+
 	it("should throw error when city is empty", () => {
 		expect(() => {
 			new Address("Wilkie Way", 4290, "94306", "");
