@@ -1,7 +1,7 @@
 export interface InputUpdateCustomerDto {
-  id: number;
-  name: string;
-  address: {
+  id: string;
+  name?: string;
+  address?: {
     street: string;
     number: number;
     zip: string;
@@ -10,9 +10,9 @@ export interface InputUpdateCustomerDto {
 }
 
 export interface OutputUpdateCustomerDto {
-  id: number;
+  id: string;
   name: string;
-  address: {
+  address?: {
     street: string;
     number: number;
     zip: string;
