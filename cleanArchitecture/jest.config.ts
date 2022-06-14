@@ -2,7 +2,7 @@
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
- 
+
 export default {
 	transform: {
 		"^.+\.(t|j)sx?$": ["@swc/jest"],
@@ -90,6 +90,7 @@ export default {
 	moduleNameMapper: {
 		"@domain/(.*)": "<rootDir>/src/domain/$1",
 		"@infra/(.*)": "<rootDir>/src/infra/$1",
+		"@useCases/(.*)": "<rootDir>/src/useCases/$1",
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

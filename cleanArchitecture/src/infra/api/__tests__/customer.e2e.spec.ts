@@ -22,7 +22,8 @@ describe("E2E test for customer", () => {
 			.post("/customer")
 			.send({ name: "John Doe", address });
 
-		expect(response.status).toEqual(200);
+		expect(response.status).toEqual(201);
+		expect(response.body).toHaveProperty("id");
 		expect(response.body.name).toEqual("John Doe");
 		expect(response.body.address).toEqual(address);
 	});
