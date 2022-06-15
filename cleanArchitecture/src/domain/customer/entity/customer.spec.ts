@@ -7,19 +7,25 @@ describe("Customer unit tests", () => {
 	it("should throw error when id is empty", () => {
 		expect(() => {
 			new Customer("", "John Doe");
-		}).toThrowError("Id is required");
+		}).toThrowError("customer: Id is required");
 	});
 
 	it("should throw error when name is empty", () => {
 		expect(() => {
 			new Customer("123", "");
-		}).toThrowError("Name is required");
+		}).toThrowError("customer: Name is required, customer: Name must contain at least two words");
+	});
+
+	it("should throw error when name and id are empty", () => {
+		expect(() => {
+			new Customer("", "");
+		}).toThrowError("customer: Id is required, customer: Name is required, customer: Name must contain at least two words");
 	});
 
 	it("should throw error when name don't have at least two words", () => {
 		expect(() => {
 			new Customer("123", "John");
-		}).toThrowError("Name must contain at least two words");
+		}).toThrowError("customer: Name must contain at least two words");
 	});
 
 	it("should change name", () => {
@@ -34,14 +40,14 @@ describe("Customer unit tests", () => {
 		expect(() => {
 			const customer = new Customer("123", "John Doe");
 			customer.changeName("");
-		}).toThrowError("Name is required");
+		}).toThrowError("customer: Name is required, customer: Name must contain at least two words");
 	});
 
 	it("should not activate a customer without address", () => {
 		expect(() => {
 			const customer = new Customer("123", "John Doe");
 			customer.activate();
-		}).toThrowError("Address is mandatory to active a customer");
+		}).toThrowError("customer - activate: Address is mandatory to active a customer");
 	});
 
 	it("should set address to a customer", () => {
@@ -81,6 +87,6 @@ describe("Customer unit tests", () => {
 			customer.addRewardPoints(100);
 
 			customer.addRewardPoints(-50);
-		}).toThrowError("Points must be positive");
+		}).toThrowError("customer - addRewardPoints: Points must be positive");
 	});
 });

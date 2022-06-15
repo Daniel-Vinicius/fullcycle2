@@ -1,34 +1,42 @@
+import { Entity } from "@domain/@shared/entity/entity.abstract";
 import { Address } from "@domain/customer/valueObject/address";
 
-export class Customer {
-	private _id: string;
+export class Customer extends Entity {
+	private context = "customer";
 	private _name: string;
 	private _address?: Address;
 	private _active = false;
 	private _rewardPoints = 0;
 
 	constructor(id: string, name: string) {
-		this._id = id;
+		super(id);
 		this._name = name;
 		this.validate();
 	}
 
+	private nameHasLessThanTwoWords() {
+		const words = this._name.split(" ");
+		return words.length < 2;
+	}
+
 	validate() {
-		if (!this._id) {
-			throw new Error("Id is required");
+		if (!this.id) {
+			this.notification.addError({ context: this.context, message: "Id is required" });
 		}
 
 		if (!this._name) {
-			throw new Error("Name is required");
+			this.notification.addError({ context: this.context, message: "Name is required" });
 		}
 
-		if (this._name.split(" ").length < 2) {
-			throw new Error("Name must contain at least two words");
+		if (this.nameHasLessThanTwoWords()) {
+			this.notification.addError({ context: this.context, message: "Name must contain at least two words" });
 		}
 
 		if (this._rewardPoints < 0) {
-			throw new Error("Reward points must be greater than or equal to zero");
+			this.notification.addError({ context: this.context, message: "Reward points must be greater than or equal to zero" });
 		}
+
+		this.notification.throwErrorIfHasErrors();
 	}
 
 	changeName(name: string) {
@@ -38,7 +46,8 @@ export class Customer {
 
 	activate() {
 		if (!this._address) {
-			throw new Error("Address is mandatory to active a customer");
+			this.notification.addError({ context: "customer - activate", message: "Address is mandatory to active a customer" });
+			this.notification.throwErrorIfHasErrors();
 		}
 
 		this._active = true;
@@ -59,14 +68,11 @@ export class Customer {
 
 	addRewardPoints(points: number) {
 		if (points < 0) {
-			throw new Error("Points must be positive");
+			this.notification.addError({ context: "customer - addRewardPoints", message: "Points must be positive" });
+			this.notification.throwErrorIfHasErrors();
 		}
 
 		this._rewardPoints += points;
-	}
-
-	get id() {
-		return this._id;
 	}
 
 	get name() {
