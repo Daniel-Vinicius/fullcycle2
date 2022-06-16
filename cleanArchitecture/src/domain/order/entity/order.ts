@@ -1,12 +1,13 @@
+import { Entity } from "@domain/@shared/entity/entity.abstract";
 import { OrderItem } from "./orderItem";
 
-export class Order {
-	private _id: string;
+export class Order extends Entity {
+	private context = "order";
 	private _customerId: string;
 	private _items: OrderItem[];
 
 	constructor(id: string, customerId: string, items: OrderItem[]) {
-		this._id = id;
+		super(id);
 		this._customerId = customerId;
 		this._items = items;
 
@@ -15,16 +16,18 @@ export class Order {
 
 	validate() {
 		if (!this._id) {
-			throw new Error("Id is required");
+			this.notification.addError({ message: "Id is required", context: this.context });
 		}
 
 		if (!this._customerId) {
-			throw new Error("CustomerId is required");
+			this.notification.addError({ message: "CustomerId is required", context: this.context });
 		}
 
 		if (this._items.length <= 0) {
-			throw new Error("Order must have at least one item");
+			this.notification.addError({ message: "Order must have at least one item", context: this.context });
 		}
+
+		this.notification.throwErrorIfHasErrors();
 	}
 
 	get id() {
@@ -55,7 +58,8 @@ export class Order {
 		const itemExists = itemIndex !== -1 && itemIndex >= 0;
 
 		if (!itemExists) {
-			throw new Error("Item not found");
+			this.notification.addError({ message: "Item not found", context: this.context });
+			this.notification.throwErrorIfHasErrors();
 		}
 
 		this._items.splice(itemIndex, 1);

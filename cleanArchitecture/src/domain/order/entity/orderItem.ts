@@ -1,12 +1,14 @@
-export class OrderItem {
-	private _id: string;
+import { Entity } from "@domain/@shared/entity/entity.abstract";
+
+export class OrderItem extends Entity {
+	private context = "orderItem";
 	private _productId: string;
 	private _name: string;
 	private _unitPrice: number;
 	private _quantity: number;
 
-	constructor(id: string, productId: string, name: string, unitPrice: number,  quantity: number) {
-		this._id = id;
+	constructor(id: string, productId: string, name: string, unitPrice: number, quantity: number) {
+		super(id);
 		this._productId = productId;
 		this._name = name;
 		this._unitPrice = unitPrice;
@@ -17,28 +19,26 @@ export class OrderItem {
 
 	validate() {
 		if (!this._id) {
-			throw new Error("Id is required");
+			this.notification.addError({ message: "Id is required", context: this.context });
 		}
 
 		if (!this._productId) {
-			throw new Error("ProductId is required");
+			this.notification.addError({ message: "ProductId is required", context: this.context });
 		}
 
 		if (!this._name) {
-			throw new Error("Name is required");
+			this.notification.addError({ message: "Name is required", context: this.context });
 		}
 
 		if (this._unitPrice <= 0) {
-			throw new Error("Price must be greater than zero");
+			this.notification.addError({ message: "Price must be greater than zero", context: this.context });
 		}
 
 		if (this._quantity <= 0) {
-			throw new Error("Quantity must be greater than zero");
+			this.notification.addError({ message: "Quantity must be greater than zero", context: this.context });
 		}
-	}
 
-	get id() {
-		return this._id;
+		this.notification.throwErrorIfHasErrors();
 	}
 
 	get productId() {

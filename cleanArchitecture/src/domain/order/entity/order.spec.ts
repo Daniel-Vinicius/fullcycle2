@@ -6,19 +6,19 @@ describe("Order unit tests", () => {
 	it("should throw error when id is empty", () => {
 		expect(() => {
 			new Order("", "123", []);
-		}).toThrowError("Id is required");
+		}).toThrowError("order: Id is required");
 	});
 
 	it("should throw error when customerId is empty", () => {
 		expect(() => {
 			new Order("1", "", []);
-		}).toThrowError("CustomerId is required");
+		}).toThrowError("order: CustomerId is required");
 	});
 
 	it("order must have at least one item", () => {
 		expect(() => {
 			new Order("1", "123", []);
-		}).toThrowError("Order must have at least one item");
+		}).toThrowError("order: Order must have at least one item");
 	});
 
 	it("should calculate total", () => {
@@ -70,7 +70,7 @@ describe("Order unit tests", () => {
 
 		expect(() => {
 			order.removeItem("3");
-		}).toThrowError("Item not found");
+		}).toThrowError("order: Item not found");
 	});
 
 });
