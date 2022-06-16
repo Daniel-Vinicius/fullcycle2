@@ -8,7 +8,8 @@ export class CustomerYupValidator implements ValidatorInterface<Customer> {
 			yup.object()
 				.shape({
 					id: yup.string().required("Id is required"),
-					name: yup.string().required("Name is required"),
+					name: yup.string().required("Name is required").matches(/^s*[\S]+(\s[\S]+)+\s*$/, "Name must contain at least two words"),
+					rewardPoints: yup.number().positive("Reward points must be greater than or equal to zero"),
 				})
 				.validateSync(
 					{ id: entity.id, name: entity.name },
