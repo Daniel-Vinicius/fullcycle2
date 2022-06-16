@@ -895,6 +895,11 @@
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/jstoxml@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/jstoxml/-/jstoxml-2.0.2.tgz#7ccfe12412857cc541a737ae56ce2559bd9b8ef4"
+  integrity sha512-60VaXPlZbd7tEhloAkE2E0lg+QoWpnGusdy+2pGMGFFpdsyxm/1GKs0o/nLJJKWXci92cnq2utmqaV5L7Zjqxw==
+
 "@types/lodash@^4.14.175":
   version "4.14.182"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
@@ -3361,6 +3366,11 @@ json5@^2.1.2, json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
+
+jstoxml@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/jstoxml/-/jstoxml-3.2.3.tgz#2627c193f61b413bb54991130f07e0c7c25ed558"
+  integrity sha512-IxoZkdFcKm1dO4g+JcZBB7z1p/vPXEZPV3APRDd3/zcVtthg2kfTmpzKNZMl37/MrE/Uoc2p6ZnLnv3P5HVMTw==
 
 kleur@^3.0.3:
   version "3.0.3"
