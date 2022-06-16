@@ -1,10 +1,13 @@
-export class Product {
-	private _id: string;
+import { Entity } from "@domain/@shared/entity/entity.abstract";
+
+export class Product extends Entity {
+	private context = "product";
 	private _name: string;
 	private _price: number;
 
 	constructor(id: string, name: string, price: number) {
-		this._id = id;
+		super(id);
+
 		this._name = name;
 		this._price = price;
 		this.validate();
@@ -12,16 +15,18 @@ export class Product {
 
 	validate() {
 		if (!this._id) {
-			throw new Error("Id is required");
+			this.notification.addError({ context: this.context, message: "Id is required" });
 		}
 
 		if (!this._name) {
-			throw new Error("Name is required");
+			this.notification.addError({ context: this.context, message: "Name is required" });
 		}
 
 		if (this._price <= 0) {
-			throw new Error("Price must be greater than zero");
+			this.notification.addError({ context: this.context, message: "Price must be greater than zero" });
 		}
+
+		this.notification.throwErrorIfHasErrors();
 	}
 
 	get id() {
