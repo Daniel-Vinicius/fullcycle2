@@ -14,7 +14,7 @@ describe("E2E test for customer", () => {
 		street: "123 Main St",
 		city: "Anytown",
 		number: 123,
-		zip: "12345"
+		zip: "12345",
 	};
 
 	it("should create a customer", async () => {
@@ -49,5 +49,43 @@ describe("E2E test for customer", () => {
 
 		expect(customer1.name).toEqual("John Doe");
 		expect(customer2.name).toEqual("Jane Doe");
+	});
+
+	it("should list all customers in XML", async () => {
+		const customer1 = await request(app).post("/customer").send({ name: "John Doe", address });
+		const customer2 = await request(app).post("/customer").send({ name: "Jane Doe", address });
+
+		const responseXML = await request(app)
+			.get("/customer")
+			.set("Accept", "application/xml")
+			.send();
+
+		expect(responseXML.status).toEqual(200);
+		expect(responseXML.text).toContain("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+
+		expect(responseXML.text)
+			.toMatchInlineSnapshot(`
+		"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+		<customers>
+		 <customer>
+		  <id>${customer1.body.id}</id>
+		  <name>${customer1.body.name}</name>
+		  <address>
+		   <street>123 Main St</street>
+		   <number>123</number>
+		   <zip>12345</zip>
+		   <city>Anytown</city>
+		  </address>
+		  <id>${customer2.body.id}</id>
+		  <name>${customer2.body.name}</name>
+		  <address>
+		   <street>123 Main St</street>
+		   <number>123</number>
+		   <zip>12345</zip>
+		   <city>Anytown</city>
+		  </address>
+		 </customer>
+		</customers>"
+	`);
 	});
 });
