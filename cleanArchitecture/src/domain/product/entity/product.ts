@@ -1,4 +1,5 @@
 import { Entity } from "@domain/@shared/entity/entity.abstract";
+import { ProductValidatorFactory } from "../factory/product.validator.factory";
 
 export class Product extends Entity {
 	private context = "product";
@@ -14,18 +15,8 @@ export class Product extends Entity {
 	}
 
 	validate() {
-		if (!this._id) {
-			this.notification.addError({ context: this.context, message: "Id is required" });
-		}
-
-		if (!this._name) {
-			this.notification.addError({ context: this.context, message: "Name is required" });
-		}
-
-		if (this._price <= 0) {
-			this.notification.addError({ context: this.context, message: "Price must be greater than zero" });
-		}
-
+		const productValidator = ProductValidatorFactory.create();
+		productValidator.validate(this);
 		this.notification.throwErrorIfHasErrors();
 	}
 
