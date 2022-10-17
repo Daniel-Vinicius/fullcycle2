@@ -20,7 +20,8 @@ export class ProductRepository implements ProductGateway {
     return products.map((product) => productModelToProductEntity(product));
   }
 
-  find(id: string): Promise<Product> {
-    throw new Error("Method not implemented.");
+  async find(id: string): Promise<Product> {
+    const product = await ProductModel.findByPk(id);
+    return productModelToProductEntity(product);
   }
 }
