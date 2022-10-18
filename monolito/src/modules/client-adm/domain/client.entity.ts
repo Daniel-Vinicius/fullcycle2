@@ -7,6 +7,8 @@ type ClientProps = {
   name: string;
   email: string;
   address: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export class Client extends BaseEntity implements AggregateRoot {
@@ -15,7 +17,7 @@ export class Client extends BaseEntity implements AggregateRoot {
   private _address: string;
 
   constructor(props: ClientProps) {
-    super(props.id);
+    super(props.id, props.createdAt, props.updatedAt);
     this._name = props.name;
     this._email = props.email;
     this._address = props.address;
