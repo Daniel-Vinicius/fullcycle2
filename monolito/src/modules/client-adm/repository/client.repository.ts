@@ -10,6 +10,7 @@ function clientModelToEntity(clientModel: ClientModel) {
     name: clientModel.name,
     email: clientModel.email,
     address: clientModel.address,
+    document: clientModel.document,
     createdAt: clientModel.createdAt,
     updatedAt: clientModel.updatedAt,
   });
@@ -22,6 +23,7 @@ export class ClientRepository implements ClientGateway {
       name: client.name,
       email: client.email,
       address: client.address,
+      document: client.document,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });

@@ -30,6 +30,7 @@ describe("ClientAdmFacade test", () => {
       name: "Client 1",
       email: "client@example.com",
       address: "Address 1",
+      document: "0000",
     };
 
     await facade.add(input);
@@ -41,6 +42,7 @@ describe("ClientAdmFacade test", () => {
     expect(clientDb.name).toEqual(input.name);
     expect(clientDb.email).toEqual(input.email);
     expect(clientDb.address).toEqual(input.address);
+    expect(clientDb.document).toEqual(input.document);
   });
 
   it("should find a client", async () => {
@@ -51,6 +53,7 @@ describe("ClientAdmFacade test", () => {
       name: "Client 1",
       email: "client@example.com",
       address: "Address 1",
+      document: "0000",
     };
 
     await facade.add(input);
@@ -62,5 +65,6 @@ describe("ClientAdmFacade test", () => {
     expect(client.name).toEqual(input.name);
     expect(client.email).toEqual(input.email);
     expect(client.address).toEqual(input.address);
+    expect(client.document).toEqual(input.document);
   });
 });

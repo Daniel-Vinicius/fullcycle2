@@ -19,6 +19,9 @@ export class ClientModel extends Model {
   address: string;
 
   @Column({ allowNull: false })
+  document: string;
+
+  @Column({ allowNull: false })
   createdAt: Date;
 
   @Column({ allowNull: false })

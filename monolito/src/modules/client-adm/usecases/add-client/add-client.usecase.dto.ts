@@ -3,6 +3,7 @@ export interface AddClientInputDto {
   name: string;
   email: string;
   address: string;
+  document: string;
 }
 
 export interface AddClientOutputDto {
@@ -10,6 +11,7 @@ export interface AddClientOutputDto {
   name: string;
   email: string;
   address: string;
+  document: string;
   createdAt: Date;
   updatedAt: Date;
 }

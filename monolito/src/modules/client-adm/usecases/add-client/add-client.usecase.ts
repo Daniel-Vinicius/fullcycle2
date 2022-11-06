@@ -21,6 +21,7 @@ export class AddClientUseCase implements UseCaseInterface {
       name: input.name,
       email: input.email,
       address: input.address,
+      document: input.document,
     });
 
     await this._clientRepository.add(client);
@@ -30,6 +31,7 @@ export class AddClientUseCase implements UseCaseInterface {
       name: client.name,
       email: client.email,
       address: client.address,
+      document: client.document,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     };
