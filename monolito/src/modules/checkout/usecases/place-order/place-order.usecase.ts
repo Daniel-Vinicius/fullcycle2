@@ -85,11 +85,14 @@ export class PlaceOrderUseCase implements UseCaseInterface {
         : null;
 
     payment.status === "approved" && order.approved();
+    const invoiceId = payment.status === "approved" ? invoice.id : null;
+
+    order.setInvoiceId(invoiceId);
     this._orderRepository.addOrder(order);
 
     return {
       id: order.id.id,
-      invoiceId: payment.status === "approved" ? invoice.id : null,
+      invoiceId,
       status: order.status,
       total: order.total,
       products: products.map((p) => ({ productId: p.id.id })),
