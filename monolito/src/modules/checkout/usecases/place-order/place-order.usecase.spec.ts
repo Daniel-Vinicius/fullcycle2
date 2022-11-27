@@ -1,8 +1,5 @@
-import { Sequelize } from "sequelize-typescript";
 import { Id } from "../../../@shared/domain/value-object/id.value-object";
 import { Product } from "../../domain/product.entity";
-import { OrderModel } from "../../repository/order.model";
-import { OrderRepository } from "../../repository/order.repository";
 import { PlaceOrderInputDto } from "./place-order.dto";
 import { PlaceOrderUseCase } from "./place-order.usecase";
 
@@ -174,24 +171,6 @@ describe("PlaceOrderUseCase unit test", () => {
     });
 
     describe("place an order", () => {
-      let sequelize: Sequelize;
-
-      beforeEach(async () => {
-        sequelize = new Sequelize({
-          dialect: "sqlite",
-          storage: ":memory:",
-          logging: false,
-          sync: { force: true },
-        });
-
-        sequelize.addModels([OrderModel]);
-        await sequelize.sync();
-      });
-
-      afterEach(async () => {
-        await sequelize.close();
-      });
-
       const clientProps = {
         id: "1c",
         name: "Client 1",
@@ -209,7 +188,10 @@ describe("PlaceOrderUseCase unit test", () => {
         process: jest.fn(),
       };
 
-      const mockOrderRepository = new OrderRepository();
+      const mockOrderRepository = {
+        addOrder: jest.fn(),
+        findOrder: jest.fn(),
+      };
 
       const mockInvoiceFacade = {
         generateInvoice: jest.fn().mockResolvedValue({ id: "1i" }),
@@ -283,7 +265,7 @@ describe("PlaceOrderUseCase unit test", () => {
         expect(mockValidateProducts).toHaveBeenCalledTimes(1);
         expect(mockValidateProducts).toHaveBeenCalledWith(input);
         expect(mockGetProduct).toHaveBeenCalledTimes(2);
-        // expect(mockOrderRepository.addOrder).toHaveBeenCalledTimes(1);
+        expect(mockOrderRepository.addOrder).toHaveBeenCalledTimes(1);
         expect(mockPaymentFacade.process).toBeCalledTimes(1);
         expect(mockPaymentFacade.process).toHaveBeenCalledWith({
           orderId: output.id,
@@ -320,7 +302,7 @@ describe("PlaceOrderUseCase unit test", () => {
         expect(mockClientFacade.find).toHaveBeenCalledWith({ id: "1c" });
         expect(mockValidateProducts).toHaveBeenCalledTimes(1);
         expect(mockGetProduct).toHaveBeenCalledTimes(2);
-        // expect(mockOrderRepository.addOrder).toHaveBeenCalledTimes(1);
+        expect(mockOrderRepository.addOrder).toHaveBeenCalledTimes(1);
         expect(mockPaymentFacade.process).toBeCalledTimes(1);
         expect(mockPaymentFacade.process).toHaveBeenCalledWith({
           orderId: output.id,
