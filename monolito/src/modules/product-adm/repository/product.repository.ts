@@ -24,6 +24,7 @@ export class ProductRepository implements ProductGateway {
       name: product.name,
       description: product.description,
       purchasePrice: product.purchasePrice,
+      salesPrice: product.purchasePrice,
       stock: product.stock,
       createdAt: new Date(),
       updatedAt: new Date(),

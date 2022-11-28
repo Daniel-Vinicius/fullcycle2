@@ -15,7 +15,7 @@ invoicesRoute.get("/:id", async (request: Request, response: Response) => {
 
     const invoice = await facade.findInvoice(input);
 
-    response.status(200).send(invoice);
+    response.status(200).json(invoice);
   } catch (error) {
     console.error(error);
     response.status(400).send(error);

@@ -64,7 +64,10 @@ describe("InvoiceRepository test", () => {
     expect(result.id).toEqual(invoice.id);
     expect(result.name).toEqual(invoice.name);
     expect(result.document).toEqual(invoice.document);
-    expect(result.items).toEqual(invoice.items);
+    expect(result.items[0].name).toEqual(invoice.items[0].name);
+    expect(result.items[1].name).toEqual(invoice.items[1].name);
+    expect(result.items[1].price).toEqual(invoice.items[1].price);
+    expect(result.items[1].id.id).toEqual(invoice.items[1].id);
     expect(result.address).toEqual(invoice.address);
     expect(invoice.total).toEqual(300);
     expect(result.total).toEqual(invoice.total);
@@ -104,7 +107,10 @@ describe("InvoiceRepository test", () => {
     expect(result.id.id).toEqual(invoiceCreated.id);
     expect(result.name).toEqual(invoiceCreated.name);
     expect(result.document).toEqual(invoiceCreated.document);
-    expect(result.items).toEqual(invoiceCreated.items);
+    expect(result.items[0].name).toEqual(invoiceCreated.items[0].name);
+    expect(result.items[1].name).toEqual(invoiceCreated.items[1].name);
+    expect(result.items[1].price).toEqual(invoiceCreated.items[1].price);
+    expect(result.items[1].id.id).toEqual(invoiceCreated.items[1].id);
     expect(result.total).toEqual(300);
     expect(result.address).toEqual(
       new Address({

@@ -6,7 +6,13 @@ import {
   Table,
 } from "sequelize-typescript";
 
-import { Product } from "../domain/product";
+interface ProductData {
+  id: string;
+  name: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 @Table({
   tableName: "invoices",
@@ -30,7 +36,7 @@ export class InvoiceModel extends Model {
   updatedAt: Date;
 
   @Column({ allowNull: false, type: DataType.JSON })
-  items: Product[];
+  items: ProductData[];
 
   @Column({ allowNull: false })
   addressStreet: string;
