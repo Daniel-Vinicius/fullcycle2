@@ -9,7 +9,7 @@ System_Ext(payment_gateway, "Payment Gateway", "Payment Processor")
 
 System_Boundary(digital_wallet, "Digital Wallet") {
   Container(spa, "SPA", "React", "Digital Wallet Web App")
-  Container(wallet_core, "Wallet Core", "TS", "Wallet Core is responsible for the transactions")
+  Container(wallet_core, "Wallet Core", "Golang", "Wallet Core is responsible for the transactions")
   Container(balance_service, "Balance Microsservice", "TS", "Returns customer balance")
   Container(statement_service, "Statement Microsservice", "TS", "Returns customer statement")
   Container(payment_acl, "Payment ACL", "TS", "Anticorruption Layer for Payment Gateway")
