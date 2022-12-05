@@ -13,3 +13,6 @@
 [submodule "go-ports-adapters"]
 	path = go-ports-adapters
 	url = https://github.com/Daniel-Vinicius/go-ports-adapters.git
+[submodule "microsservices/fc-ms-wallet"]
+	path = microsservices/fc-ms-wallet
+	url = https://github.com/Daniel-Vinicius/fc-ms-wallet.git
