@@ -50,10 +50,26 @@ func main() {
 			return
 		}
 
+		idToken, ok := token.Extra("id_token").(string)
+		if !ok {
+			http.Error(writter, "Fail to generate the IDToken", http.StatusInternalServerError)
+			return
+		}
+
+		userInfo, err := provider.UserInfo(ctx, oauth2.StaticTokenSource(token))
+		if err != nil{
+			http.Error(writter, "Fail to get user info", http.StatusInternalServerError)
+			return
+		}
+
 		resp := struct {
-			AccessToken *oauth2.Token
+			AccessToken *oauth2.Token;
+			IDToken string;
+			UserInfo *oidc.UserInfo;
 		}{
 			AccessToken: token,
+			IDToken: idToken,
+			UserInfo: userInfo,
 		}
 
 		data, err := json.Marshal(resp)
