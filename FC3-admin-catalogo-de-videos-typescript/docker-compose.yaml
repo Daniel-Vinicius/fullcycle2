@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    container_name: micro_videos_app_ts
+    volumes:
+      - .:/home/node/app
