@@ -16,6 +16,3 @@
 [submodule "microsservices/fc-ms-wallet"]
 	path = microsservices/fc-ms-wallet
 	url = https://github.com/Daniel-Vinicius/fc-ms-wallet.git
-[submodule "FC3-admin-catalogo-de-videos-typescript"]
-	path = FC3-admin-catalogo-de-videos-typescript
-	url = https://github.com/Daniel-Vinicius/FC3-admin-catalogo-de-videos-typescript.git
